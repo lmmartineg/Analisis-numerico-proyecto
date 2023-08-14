@@ -1,12 +1,2 @@
 {% extends './layout.html'%} {% block title%} {{data.titulo}} {% endblock %} {%
-block body %}
-<h1>{{ data.bienvenida }}</h1>
-{% if data.num_animales >0%}
-<ul>
-  {% for c in data.animales %}
-  <li>{{c}}</li>
-  {% endfor%}
-</ul>
-{%else%}
-<h2>no hay animales</h2>
-{% endif %} {% endblock %}
+block body %} {% endblock %}
