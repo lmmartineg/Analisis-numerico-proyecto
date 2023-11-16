@@ -8,7 +8,7 @@ if Punto_Inicial>Punto_B || Funcion_eval(Punto_Inicial,f)*Funcion_eval(Punto_B,f
     fprintf("El intervalo entregado no es valiso")
     
 end
-if Control_E=="abs"
+if Control_E=="Absoluto"
         Punto_nuevo=Punto_Inicial-Funcion_eval(Punto_Inicial,f)*((Punto_B-Punto_Inicial)/(Funcion_eval(Punto_B,f)-Funcion_eval(Punto_Inicial,f)));
         Puntos_t=[Puntos_t;Punto_nuevo];
         Error=abs(Punto_Inicial-Punto_nuevo);

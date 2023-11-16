@@ -10,7 +10,7 @@ Derivada_Eval=Derivada_Eval_Tabla;
 Error_Tabla(Contador+1)=Tolerancia+1;
 Error=Error_Tabla(Contador+1);
 X_n_Tabla(Contador+1)=Punto_Inicial;
-if Control_E=="abs"
+if Control_E=="Absoluto"
     while Error>Tolerancia && Contador<Num_Max_Iteraciones
         X_n_Tabla(Contador+2)=Punto_Inicial-Funcion_Eval/Derivada_Eval;
         Funcion_Eval_Tabla(Contador+2)=double(subs(Funcion_Objetivo,x,X_n_Tabla(Contador+2)));

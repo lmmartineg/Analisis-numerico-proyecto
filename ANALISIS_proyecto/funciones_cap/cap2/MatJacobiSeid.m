@@ -20,7 +20,7 @@ function [E,s, T] = MatJacobiSeid(x0,A,b,Tol,niter,met)
             C=inv(D-L)*b;
             x1=T*x0+C;
         end
-        E(c+1)=norm(x1-x0,'inf');
+        E(c+1)=norm(x1-x0,'inf')/norm(x1,'inf');
         error=E(c+1);
         x0=x1;
         c=c+1;

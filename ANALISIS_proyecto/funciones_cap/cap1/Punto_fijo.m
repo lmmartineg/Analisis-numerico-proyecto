@@ -7,8 +7,7 @@ F_evaluada=F_evaluada_Tabla(Contador+1);
 Error_tabla(Contador+1)=Tolerancia+1;
 Error=Error_tabla(Contador+1);
 X_n_Tabla(Contador+1)=Punto_Inicial;
-Iteraciones_Tabla(Contador+1)=Contador;
-if Control_E=="abs"
+if Control_E=="Absoluto"
     while Error>Tolerancia && F_evaluada ~= 0 && Contador<Num_Max_Iteraciones
         X_n_Tabla(Contador+2)=double(subs(Funcion_Aux,x,Punto_Inicial));
         F_evaluada_Tabla(Contador+2)=double(subs(Funcion_Objetivo,x,X_n_Tabla(Contador+2)));
@@ -16,7 +15,7 @@ if Control_E=="abs"
         Error_tabla(Contador+2)=abs((X_n_Tabla(Contador+2)-Punto_Inicial));
         Error=Error_tabla(Contador+2);
         Punto_Inicial=X_n_Tabla(Contador+2);
-        Iteraciones_Tabla(Contador+2)=Contador+1;
+        
         Contador=Contador+1;
     end
         
@@ -28,17 +27,17 @@ else
         Error_tabla(Contador+2)=abs((X_n_Tabla(Contador+2)-Punto_Inicial)/X_n_Tabla(Contador+2));
         Error=Error_tabla(Contador+2);
         Punto_Inicial=X_n_Tabla(Contador+2);
-        Iteraciones_Tabla(Contador+2)=Contador+1;
+        
         Contador=Contador+1;
     end
 end
-Variables_tabla={'Iteracriones','Valor de Xn','F evaluada','Error'};
+Variables_tabla={'Valor de Xn','F evaluada','Error'};
 if F_evaluada==0
     Iteraciones=Contador;
-    tabla=table(Iteraciones_Tabla',X_n_Tabla',F_evaluada_Tabla',Error_tabla','VariableNames',Variables_tabla);
+    tabla=table(X_n_Tabla',F_evaluada_Tabla',Error_tabla','VariableNames',Variables_tabla);
 elseif Error<Tolerancia
     fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f',Punto_Inicial,Tolerancia)
-    tabla=table(Iteraciones_Tabla',X_n_Tabla',F_evaluada_Tabla',Error_tabla','VariableNames',Variables_tabla);
+    tabla=table(X_n_Tabla',F_evaluada_Tabla',Error_tabla','VariableNames',Variables_tabla);
 else
     fprintf('Fracasó en %f iteraciones',niter) 
 end
