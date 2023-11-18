@@ -37,6 +37,7 @@ else
     end
 end
 if Funcion_Eval==0
+    
     fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f \n',Punto_Inicial,Tolerancia)
 elseif Error<Tolerancia
     fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f \n',Punto_Inicial,Tolerancia)
@@ -46,7 +47,7 @@ else
     fprintf('Fracasó en %f iteraciones \n',Num_Max_Iteraciones) 
 end
 
- Variables_tabla={'x_n','F(x) evaluada','Error'};
+ Variables_tabla={'X_n','F evaluada','Error'};
  tabla=table(X_n_Tabla',Funcion_Eval_Tabla',Error_Tabla','VariableNames',Variables_tabla);
 
 end
