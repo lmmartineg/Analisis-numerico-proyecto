@@ -1,4 +1,4 @@
-function [tabla] = Punto_fijo(Punto_Inicial,Tolerancia,Control_E,Num_Max_Iteraciones,Funcion_Objetivo,Funcion_Aux)
+function [Punto_Inicial, tabla] = Punto_fijo(Punto_Inicial,Tolerancia,Control_E,Num_Max_Iteraciones,Funcion_Objetivo,Funcion_Aux)
 syms x 
 Contador=0;
 
