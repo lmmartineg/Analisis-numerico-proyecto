@@ -37,7 +37,7 @@ end
     y=[0 6 12 15];
 
     [Tabla] = Newtonint(x,y)
-[pol] = Newtonor(x,diag(Tabla,+1))
+    [pol] = Newtonor(x,diag(Tabla,+1))
 
  xpol=x(1):0.001:x(end);
  p=pol(1)*xpol.^3+pol(2)*xpol.^2+pol(3)*xpol+pol(4);

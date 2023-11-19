@@ -1,7 +1,7 @@
 function D = Vandermonde(x, y, show)
     A = arrayfun(@(xi) xi.^(0:numel(x)-1), x, 'UniformOutput', false);
     A = vertcat(A{:});
-    b = y;
+    b = y';
     xsol = A\b;
     if show
         disp('Data Points: '); disp([x(:),y(:)]);
