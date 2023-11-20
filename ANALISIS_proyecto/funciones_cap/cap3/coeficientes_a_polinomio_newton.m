@@ -25,7 +25,7 @@ function polinomio_str = coeficientes_a_polinomio_newton(coeficientes)
 
             % Agregar variable si no es el término constante
             if i < n
-                polinomio_str = strcat(polinomio_str, 'x');
+                polinomio_str = strcat(polinomio_str, '*x');
 
                 % Agregar potencia si es mayor que 1
                 if i < n - 1
