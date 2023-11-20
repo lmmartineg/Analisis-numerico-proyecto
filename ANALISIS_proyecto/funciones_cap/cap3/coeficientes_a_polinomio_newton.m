@@ -29,7 +29,7 @@ function polinomio_str = coeficientes_a_polinomio_newton(coeficientes)
 
                 % Agregar potencia si es mayor que 1
                 if i < n - 1
-                    polinomio_str = strcat(polinomio_str, '^', num2str(n - i - 1));
+                    polinomio_str = strcat(polinomio_str, '^', num2str(n - i));
                 end
             end
         end
