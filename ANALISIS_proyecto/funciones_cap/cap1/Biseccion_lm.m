@@ -1,10 +1,10 @@
-function [solucion,Iteraciones,Tabla_resultados] = Biseccion_lm(Punto_inicial,Delta,Num_iteraciones_Max,Funcion)
+function [solucion,Tabla_resultados] = Biseccion_lm(Punto_inicial,Delta,Num_iteraciones_Max,Funcion)
 
 syms x
 F_inicial=double(subs(Funcion,x,Punto_inicial));
-T_iteraciones=[];
 T_Puntos=[Punto_inicial];
 T_val_funcion=[F_inicial];
+Tabla_resultados=table();
 if F_inicial==0
     solucion=Punto_inicial;
     %fprintf('%f es raiz de f(x)',Punto_inicial) 

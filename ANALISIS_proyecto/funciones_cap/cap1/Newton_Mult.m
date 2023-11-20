@@ -9,24 +9,28 @@ if Control_E=="Absoluto"
     Error_Tabla=[0;Error];
     Punto_Inicial=Punto_Nuevo;
     Puntos=[Puntos;Punto_Inicial];
-    while Error>tolerancia
+    Iteraciones=0;
+    while Error>tolerancia && Iteraciones<=niter
         Punto_Nuevo=Punto_Inicial-m*(Funcion_eval(Punto_Inicial,f)/Funcion_eval(Punto_Inicial,Derdivada));
         Error=abs(Punto_Nuevo-Punto_Inicial);
         Error_Tabla=[Error_Tabla;Error];
         Punto_Inicial=Punto_Nuevo;
         Puntos=[Puntos;Punto_Inicial];
+        Iteraciones=Iteraciones+1;
     end
 else
     Error=abs((Punto_Nuevo-Punto_Inicial)/Punto_Nuevo);
     Error_Tabla=[0;Error];
     Punto_Inicial=Punto_Nuevo;
     Puntos=[Puntos;Punto_Inicial];
-    while Error>tolerancia
+    Iteraciones=0;
+    while Error>tolerancia && Iteraciones<=niter
         Punto_Nuevo=Punto_Inicial-m*(Funcion_eval(Punto_Inicial,f)/Funcion_eval(Punto_Inicial,Derdivada));
         Error=abs((Punto_Nuevo-Punto_Inicial)/Punto_Nuevo);
         Error_Tabla=[Error_Tabla;Error];
         Punto_Inicial=Punto_Nuevo;
         Puntos=[Puntos;Punto_Inicial];
+        Iteraciones=Iteraciones+1;
     end
 end
 
