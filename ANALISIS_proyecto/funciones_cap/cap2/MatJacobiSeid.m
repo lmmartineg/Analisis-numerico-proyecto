@@ -3,7 +3,7 @@
 %de Gauss Seidel (Matricial), depende del método elegido, se elige 0 o 1 en met
 %respectivamente
 
-function [E, s, T] = MatJacobiSeid(x0, A, b, Tol, Control_E, niter, met)
+function [E, s, T, output] = MatJacobiSeid(x0, A, b, Tol, Control_E, niter, met)
     c = 0;
     error = Tol + 1;
     D = diag(diag(A));
@@ -48,11 +48,12 @@ function [E, s, T] = MatJacobiSeid(x0, A, b, Tol, Control_E, niter, met)
         end
     end
     if error < Tol
-        n = c;
-        fprintf('Es una aproximación de la solución del sistema con una tolerancia = %f\n', Tol)
+        T = inv(D)*(L+U);
+        radio_espectral = max(abs(eig(T)));
+        output = sprintf('%s es una aproximación de la solución del sistema con una tolerancia de %f. El método convergió porque el radio espectral %f es menos que 1.', mat2str(s(:,end)), Tol, radio_espectral);
     else
-        s = x0;
-        n = c;
-        fprintf('Fracasó en %f iteraciones\n', niter)
+        T = inv(D)*(L+U);
+        radio_espectral = max(abs(eig(T)));
+        output = sprintf('Fracasó en %f iteraciones. El método no aseguró su convergencia porque el radio espectral %f es mayor o igual a 1.', niter, radio_espectral);
     end
 end

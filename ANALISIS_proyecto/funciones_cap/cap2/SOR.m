@@ -2,7 +2,7 @@
 %Ax=b con base en una condición inicial x0,mediante el método Gauss Seidel (relajado), depende del valor de w 
 %entre (0,2)
 
-function [E, s] = SOR(x0, A, b, Tol, niter, w, Control_E)
+function [E, s, output] = SOR(x0, A, b, Tol, niter, w, Control_E)
     c = 0;
     error = Tol + 1;
     D = diag(diag(A));
@@ -27,8 +27,12 @@ function [E, s] = SOR(x0, A, b, Tol, niter, w, Control_E)
         c = c + 1;
     end
     if error < Tol
-        fprintf('Es una aproximación de la solución del sistema con una tolerancia = %f\n', Tol)
+        T = inv(D)*(L+U);
+        radio_espectral = max(abs(eig(T)));
+        output = sprintf('%s es una aproximación de la solución del sistema con una tolerancia de %f. El método convergió porque el radio espectral %f es menos que 1.', mat2str(s(:,end)), Tol, radio_espectral);
     else
-        fprintf('Fracasó en %f iteraciones\n', niter)
+        T = inv(D)*(L+U);
+        radio_espectral = max(abs(eig(T)));
+        output = sprintf('Fracasó en %f iteraciones. El método no aseguró su convergencia porque el radio espectral %f es mayor o igual a 1.', niter, radio_espectral);
     end
 end
