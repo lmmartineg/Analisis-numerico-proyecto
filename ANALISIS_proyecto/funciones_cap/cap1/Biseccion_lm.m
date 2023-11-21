@@ -1,4 +1,5 @@
-function [solucion,Tabla_resultados] = Biseccion_lm(Punto_inicial,Delta,Num_iteraciones_Max,Funcion)
+function [solucion,Tabla_resultados,output] = Biseccion_lm(Punto_inicial,Delta,Num_iteraciones_Max,Funcion)
+
 
 syms x
 F_inicial=double(subs(Funcion,x,Punto_inicial));
@@ -7,7 +8,8 @@ T_val_funcion=[F_inicial];
 Tabla_resultados=table();
 if F_inicial==0
     solucion=Punto_inicial;
-    %fprintf('%f es raiz de f(x)',Punto_inicial) 
+    output=sprintf('%f es raiz de f(x)',Punto_inicial);
+    return
 else
     Punto_nuevo=Punto_inicial+Delta;
     Iteraciones=1;
@@ -25,13 +27,13 @@ else
     end
     if F_nueva==0
         solucion=Punto_nuevo;
-        fprintf('%f es raiz de f(x)',Punto_nuevo)
+        output=sprintf('%f es raiz de f(x)',Punto_nuevo);
     elseif F_inicial*F_nueva<0
         solucion=Punto_nuevo;
-        fprintf('Existe una raiz de f(x) entre %f y %f',Punto_inicial,Punto_nuevo)
+        output=sprintf('Existe una raiz de f(x) entre %f y %f',Punto_inicial,Punto_nuevo);
     else
         solucion=Punto_nuevo;
-        fprintf('Fracaso en %f iteraciones',Num_iteraciones_Max)
+        output=sprintf('Fracaso en %f iteraciones',Num_iteraciones_Max);
     end
     
     Tabla_resultados=table(T_Puntos,T_val_funcion);

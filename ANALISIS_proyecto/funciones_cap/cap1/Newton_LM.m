@@ -1,4 +1,4 @@
-function [Punto_Inicial,tabla] = Newton_LM(Punto_Inicial,Tolerancia,Num_Max_Iteraciones,Funcion_Objetivo,Control_E)
+function [Punto_Inicial,tabla,output] = Newton_LM(Punto_Inicial,Tolerancia,Num_Max_Iteraciones,Funcion_Objetivo,Control_E)
 
 % setup
 if Control_E=="Absoluto"
@@ -38,13 +38,13 @@ end
 
 
 if Funcion_Eval==0
-    fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f \n',Punto_Inicial,Tolerancia)
+    output=sprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f \n',Punto_Inicial,Tolerancia);
 elseif Error<Tolerancia
-    fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f \n',Punto_Inicial,Tolerancia)
+    output=sprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f \n',Punto_Inicial,Tolerancia);
 elseif Derivada_Eval==0
-    fprintf('%f es una posible raiz múltiple de f(x) \n',Punto_Inicial)
+    output=sprintf('%f es una posible raiz múltiple de f(x) \n',Punto_Inicial);
 else
-    fprintf('Fracasó en %f iteraciones \n',Num_Max_Iteraciones) 
+    output=sprintf('Fracasó en %f iteraciones \n',Num_Max_Iteraciones);
 end
 
  Variables_tabla={'x_n','F(x) evaluada','Error'};

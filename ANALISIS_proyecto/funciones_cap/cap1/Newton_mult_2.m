@@ -1,4 +1,4 @@
-function [Resultado,tabla] = Newton_mult_2(f,Punto_Inicial,tolerancia,niter,Control_E)
+function [Resultado,tabla,output] = Newton_mult_2(f,Punto_Inicial,tolerancia,niter,Control_E)
 syms x
 Derivada_1=diff(f);
 Derivada_2=diff(Derivada_1);
@@ -33,10 +33,10 @@ if Funcion_eval(Punto_Nuevo,f)==0
     Resultado=Punto_Nuevo;
     tabla=table(Puntos,Error_Tabla);
 elseif Error<tolerancia
-    fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f',Punto_Inicial,tolerancia)
+    output=sprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f',Punto_Inicial,tolerancia);
     Resultado=Punto_Nuevo;
     tabla=table(Puntos,Error_Tabla);
 else
-    fprintf('Fracasó en %f iteraciones',niter) 
+    output=sprintf('Fracasó en %f iteraciones',niter);
 end
 end

@@ -1,12 +1,14 @@
-function [Resultado,tabla] = Secante(f,Intervalo,tolerancia,Control_E)
+function [Resultado,tabla,output] = Secante(f,Intervalo,tolerancia,Control_E)
 syms x
 Punto_Inicial=Intervalo(1,1);
 Punto_B=Intervalo(1,2);
 Error_t=[0];
 Puntos_t=[Punto_Inicial];
 if Punto_Inicial>Punto_B || Funcion_eval(Punto_Inicial,f)*Funcion_eval(Punto_B,f)>0
-    fprintf("El intervalo entregado no es valiso")
-    
+    output=sprintf("El intervalo entregado no es valiso");
+    tabla=table();
+    Resultado=0;
+    return
 end
 if Control_E=="Absoluto"
         Punto_nuevo=Punto_Inicial-Funcion_eval(Punto_Inicial,f)*((Punto_B-Punto_Inicial)/(Funcion_eval(Punto_B,f)-Funcion_eval(Punto_Inicial,f)));
@@ -46,7 +48,7 @@ else
         Error_t=[Error_t;Error];
     if Funcion_eval(Punto_nuevo,f) == 0
         Resultado=Punto_nuevo;
-        fprintf("La raiz de la funcion es %f",Resultado)
+        output=sprintf("La raiz de la funcion es %f",Resultado);
         return
     else
         Punto_Inicial=Punto_B;
@@ -60,7 +62,7 @@ else
         Error_t=[Error_t;Error];
     if Funcion_eval(Punto_nuevo,f) == 0
         Resultado=Punto_nuevo;
-        fprintf("La raiz de la funcion es %f",Resultado)
+        output=sprintf("La raiz de la funcion es %f",Resultado);
         return
     else
         Punto_Inicial=Punto_B;

@@ -1,6 +1,7 @@
-function [Punto_Inicial, tabla] = Punto_fijo(Punto_Inicial,Tolerancia,Control_E,Num_Max_Iteraciones,Funcion_Objetivo,Funcion_Aux)
+function [Punto_Inicial, tabla,output] = Punto_fijo(Punto_Inicial,Tolerancia,Control_E,Num_Max_Iteraciones,Funcion_Objetivo,Funcion_Aux)
 syms x 
 Contador=0;
+
 
 F_evaluada_Tabla(Contador+1)=double(subs(Funcion_Objetivo,x,Punto_Inicial));
 F_evaluada=F_evaluada_Tabla(Contador+1);
@@ -36,9 +37,9 @@ if F_evaluada==0
     Iteraciones=Contador;
     tabla=table(X_n_Tabla',F_evaluada_Tabla',Error_tabla','VariableNames',Variables_tabla);
 elseif Error<Tolerancia
-    fprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f',Punto_Inicial,Tolerancia)
+    output=sprintf('%f es una aproximación de una raiz de f(x) con una tolerancia= %f',Punto_Inicial,Tolerancia);
     tabla=table(X_n_Tabla',F_evaluada_Tabla',Error_tabla','VariableNames',Variables_tabla);
 else
-    fprintf('Fracasó en %f iteraciones',niter) 
+    output=sprintf('Fracasó en %f iteraciones',niter);
 end
 end
